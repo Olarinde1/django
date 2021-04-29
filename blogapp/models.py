@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from datetime import datetime
 from django.utils import timezone
 from django.contrib.auth.models import User
 
@@ -7,6 +8,7 @@ from django.contrib.auth.models import User
 class Post(models.Model):
     title = models.CharField(max_length=200)
     author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    date_created = models.DateTimeField(default=datetime.now(), verbose_name='date created')
     body = models.TextField()
 
     def __str__(self):
@@ -34,7 +36,7 @@ class Comment(models.Model):
     active = models.BooleanField(default=False)
 
     class Meta:
-        ordering = ['created_on']
+        ordering = ['-created_on']
 
     def __str__(self):
         return 'Comment {} by {}'.format(self.comment, self.user)

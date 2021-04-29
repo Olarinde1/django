@@ -1,11 +1,20 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="post-entry">
-        <h2>{{ post.title }}</h2>
-        <p>{{ post.body }}</p>
-    </div>
-    <a href="{% url 'post_edit' post.pk %}">Edit Blog Post</a><br>
-    <a href="{% url 'post_delete' post.pk %}">Delete Blog Post</a>
-    <a href="{% url 'post_comment' post.pk%}">Click here to comment on post</a>
+    <article class="media content-section">
+        <img class='rounded-circle article-img' src="{{ post.author.profile.image.url }}">
+        <div class="media-body">
+            <h4><a href="{% url 'user_posts' post.author.username %}" class="mr-2">{{ post.author }}</a></h4>
+           <legend class="article-title">{{ post.title }}</legend>
+            <p class='article-content'>{{ post.body }}</p>
+            {% if post.author == user %}
+                <div class="form-group">
+                    <a class='btn btn-info btn-sm mt-1 mb-1' href="{% url 'post_comment' post.pk %}">Comment on Post</a>
+                    <a class='btn btn-secondary btn-sm mt-1 mb-1' href="{% url 'post_edit' post.pk %}">Edit Post</a>
+                    <a class='btn btn-danger btn-sm mt-1 mb-1' href="{% url 'post_delete' post.pk %}">Delete Post</a>
+                </div>
+            {% endif %}
+        </div>
+    </article>
+   <!--<a href="{% url 'post_comment' post.pk%}">Click here to comment on post</a>--> 
 {% endblock content %}

@@ -38,5 +38,5 @@ class BlogTests(TestCase):
         no_response = self.client.get('/post/10000/')
         self.assertEqual(response.status_code, 200)
         self.assertEqual(no_response.status_code, 404)
-        self.assertContains(response, "A test titlelogin_required")
+        self.assertContains(response, "A test title")
         self.assertTemplateUsed(response, 'post_detail.html')

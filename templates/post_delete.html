@@ -1,10 +1,17 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h2>Delete Post</h2>
+    <div class="content-section">
     <form action="" method="post">
         {% csrf_token %}
-        <p>Are you sure you want to delete {{ post.title }}?</p>
-        <input type="submit" value="Confirm">
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Delete Post</legend>
+        </fieldset>
+        <p>Are you sure you want to delete the post "{{ post.title }}"?</p>
+        <div class="form-group">
+            <button class="btn btn-outline-danger" type="submit">Confirm</button>
+            <a class="btn btn-outline-secondary" href="{% url 'post_detail' post.pk %}">Cancel</a>
+        </div>
     </form>
+    </div>
 {% endblock content %} 
