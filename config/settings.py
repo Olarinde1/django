@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = "django-insecure-0b9s%k-7emcswx9=5i-yhiar2wc39+bi#-5t*qv(#r_gf*xp7-"
 SECRET_KEY = config("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = (os.environ.get("DEBUG_VALUE") == 'True')
+DEBUG = False
 # DEBUG = config('DEBUG')
 ALLOWED_HOSTS = ["polymathdjangoapp.herokuapp.com"]
 
